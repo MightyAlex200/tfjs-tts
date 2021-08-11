@@ -1,7 +1,7 @@
 tf.enableProdMode()
 
-const text2mel = tf.loadGraphModel('/text2meljstiny/model.json');
-const vocoder = tf.loadGraphModel('/vocoderjstiny/model.json');
+const text2mel = tf.loadGraphModel('text2meljstiny/model.json');
+const vocoder = tf.loadGraphModel('vocoderjstiny/model.json');
 
 const audioContext = new AudioContext();
 async function playAudio(wav) {
