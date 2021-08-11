@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>TensorflowTTS in Tensorflow.js</title>
+    <link href="style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.8.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/transliteration@2.2.0/dist/browser/bundle.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/number-to-words@1.2.4/numberToWords.min.js"></script>
@@ -10,8 +11,10 @@
 </head>
 
 <body>
-    <textarea id="tts-input"></textarea>
+    <h1>TensorflowTTS in Tensorflow.js</h1>
+    <textarea placeholder="write text here to have it read out" autofocus spellcheck id="tts-input"></textarea>
     <br>
+    <p id="tts-status"></p>
     <button id="tts-start">Speak</button>
 </body>
 

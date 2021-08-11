@@ -1,0 +1,25 @@
+body {
+    text-align: center;
+}
+
+* {
+    font-family: sans-serif;
+}
+
+#tts-status {
+    margin: 8 0 8 0;
+}
+
+#tts-input {
+    width: 50vw;
+    height: 12em;
+}
+
+#tts-start {
+    font-size: large;
+    margin: 4px;
+    padding: 5px;
+    background: #ddd;
+    border: 1px solid rgb(44, 44, 44);
+    border-radius: 0.25em;
+}

@@ -298,7 +298,8 @@ function expand_number(match) {
     return numberToWords.toWords(num);
 }
 
-async function tts(text) {
+async function tts(text, ttsStatus) {
+    ttsStatus.innerText = "Converting input";
     const input_ids = tf.tensor([convertText(text)], null, 'int32');
     inputs = {
         "input_ids": input_ids,
@@ -307,14 +308,17 @@ async function tts(text) {
         "f0_ratios": tf.tensor([1.0], null, 'float32'),
         "energy_ratios": tf.tensor([1.0], null, 'float32'),
     };
+    ttsStatus.innerText = "Generating mel spectrogram (be patient)";
     console.time("inference");
     console.time("mel generation");
     const mel = await (await text2mel).executeAsync(inputs);
     console.timeEnd("mel generation");
     console.time("vocoding");
+    ttsStatus.innerText = "Generating waveform (be patient)";
     const wav = (await vocoder).execute(mel[0]);
     console.timeEnd("vocoding");
     console.timeEnd("inference");
+    ttsStatus.innerText = "Done!";
     playAudio(wav);
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].dispose();
@@ -324,7 +328,8 @@ async function tts(text) {
 document.addEventListener('DOMContentLoaded', function () {
     const ttsInput = document.getElementById("tts-input");
     const ttsStart = document.getElementById("tts-start");
+    const ttsStatus = document.getElementById("tts-status");
     ttsStart.addEventListener("click", async function () {
-        await tts(ttsInput.value);
+        await tts(ttsInput.value, ttsStatus);
     });
 });
